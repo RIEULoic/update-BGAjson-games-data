@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "axios": "^1.7.3",
+    "simple-xml-to-json": "^1.2.2"
+  }
+}
