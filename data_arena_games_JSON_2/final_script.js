@@ -7,6 +7,10 @@ const arenaGamesList = JSON.parse(
 );
 const arenaGamesData = [];
 
+function delay(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 async function scrapGames() {
   for (let i = 0; i <= arenaGamesList.length; i += 20) {
     try {
@@ -27,6 +31,7 @@ async function scrapGames() {
       //...filteredData signifie que chaque élément de filteredData est ajouté au tableau arenaGamesData. Si je faisais seulement arenaGamesData.push(filteredData), cela ajouterait un tableau à l'intérieur du tableau arenaGamesData.
 
       console.log("Data added to arenaGamesData : ", i + 20);
+      await delay(2000);
     } catch (error) {
       console.error(error);
     }
@@ -59,6 +64,7 @@ function cleaningData(rawData) {
       const geekId = game.item.id;
       const name = getChildValue(children, "name");
       const image = getChildContent(children, "image");
+      const yearPublished = getChildValue(children, "yearpublished");
       const minPlayers = getChildValue(children, "minplayers");
       const maxPlayers = getChildValue(children, "maxplayers");
 
@@ -86,6 +92,7 @@ function cleaningData(rawData) {
         geekId,
         name,
         image,
+        yearPublished,
         minPlayers,
         maxPlayers,
         gameCategoryLinks,
